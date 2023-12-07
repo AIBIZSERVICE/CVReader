@@ -23,7 +23,7 @@ def get_pdf_text(pdf_doc):
 
 # iterate over files in
 # that user uploaded PDF files, one by one
-def create_docs(user_pdf_list):
+def create_docs(user_pdf_list, unique_id):
     docs=[]
     for filename in user_pdf_list:
         
@@ -32,7 +32,7 @@ def create_docs(user_pdf_list):
         #Adding items to our list - Adding data & its metadata
         docs.append(Document(
             page_content=chunks,
-            metadata={"name": filename.name,"id":filename.id,"type=":filename.type,"size":filename.size},
+            metadata={"name": filename.name,"id":filename.id,"type=":filename.type,"size":filename.size,"unique_id":unique_id},
         ))
 
     return docs
