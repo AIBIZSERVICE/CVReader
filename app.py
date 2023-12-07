@@ -3,9 +3,6 @@ from dotenv import load_dotenv
 from utils import *
 import uuid
 
-#Creating session variables
-if 'unique_id' not in st.session_state:
-    st.session_state['unique_id'] =''
 
 def main():
     load_dotenv()
@@ -24,11 +21,8 @@ def main():
     if submit:
         with st.spinner('Wait for it...'):
 
-            #Creating a unique ID, so that we can use to query and get only the user uploaded documents from PINECONE vector store
-            st.session_state['unique_id']=uuid.uuid4()
-
             #Create a documents list out of all the user uploaded pdf files
-            final_docs_list=create_docs(pdf,st.session_state['unique_id'])
+            final_docs_list=create_docs(pdf)
 
             #Displaying the count of resumes that have been uploaded
             st.write("*Resumes uploaded* :"+str(len(final_docs_list)))
