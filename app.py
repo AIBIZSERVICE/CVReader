@@ -37,10 +37,10 @@ def main():
             embeddings=create_embeddings_load_data()
 
             #Push data to PINECONE
-            push_to_pinecone("e697b71c-d5ed-4c66-8625-ac1c403a2df1","us-west1-gcp-free","test",embeddings,final_docs_list)
+            push_to_pinecone("03cea5d4-2cb8-4294-95b0-506fb2e06f71","gcp-starter","test",embeddings,final_docs_list)
 
             #Fecth relavant documents from PINECONE
-            relavant_docs=similar_docs(job_description,document_count,"e697b71c-d5ed-4c66-8625-ac1c403a2df1","us-west1-gcp-free","test",embeddings,st.session_state['unique_id'])
+            relavant_docs=similar_docs(job_description,document_count,"03cea5d4-2cb8-4294-95b0-506fb2e06f71","gcp-starter","test",embeddings,st.session_state['unique_id'])
 
             #t.write(relavant_docs)
 
