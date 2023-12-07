@@ -14,7 +14,9 @@ pinecone.init(
 	environment='gcp-starter'      
 )    
 
-index = pinecone.Index('hrcv')def main():
+index = pinecone.Index('hrcv')
+
+def main():
     load_dotenv()
 
     st.set_page_config(page_title="Resume Screening Assistance")
