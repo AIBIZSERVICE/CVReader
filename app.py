@@ -25,7 +25,7 @@ def main():
         with st.spinner('Wait for it...'):
 
             #Creating a unique ID, so that we can use to query and get only the user uploaded documents from PINECONE vector store
-            st.session_state['unique_id']=uuid.uuid4().hex
+            st.session_state['unique_id']=uuid.uuid4()
 
             #Create a documents list out of all the user uploaded pdf files
             final_docs_list=create_docs(pdf,st.session_state['unique_id'])
