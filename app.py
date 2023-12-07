@@ -41,7 +41,8 @@ def main():
 
             #Displaying the count of resumes that have been uploaded
             st.write("*Resumes uploaded* :"+str(len(final_docs_list)))
-
+            st.write(final_docs_list)
+            
             #Create embeddings instance
             embeddings=create_embeddings_load_data()
 
@@ -51,7 +52,7 @@ def main():
             #Fecth relavant documents from PINECONE
             relavant_docs=similar_docs(job_description,document_count,"3dc36ba5-79b6-4267-a754-d179fb7b8ea3","gcp-starter","hrcv",embeddings,st.session_state['unique_id'])
 
-            #t.write(relavant_docs)
+            st.write(relavant_docs)
 
             #Introducing a line separator
             st.write(":heavy_minus_sign:" * 30)
