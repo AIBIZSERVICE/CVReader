@@ -8,8 +8,7 @@ import pinecone
 from pypdf import PdfReader
 from langchain.llms.openai import OpenAI
 from langchain.chains.summarize import load_summarize_chain
-from langchain import HuggingFaceHub
-
+from langchain.llms.HuggingFaceHub
 
 #Extract Information from PDF file
 def get_pdf_text(pdf_doc):
