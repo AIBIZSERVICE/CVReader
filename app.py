@@ -9,12 +9,6 @@ if 'unique_id' not in st.session_state:
 
 import pinecone      
 
-pinecone.init(      
-	api_key='3dc36ba5-79b6-4267-a754-d179fb7b8ea3',      
-	environment='gcp-starter'      
-)    
-
-index = pinecone.Index('hrcv')
 
 def main():
     load_dotenv()
