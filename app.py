@@ -5,7 +5,7 @@ import uuid
 
 #Creating session variables
 if 'unique_id' not in st.session_state:
-    st.session_state['unique_id'] ='123'
+    st.session_state['unique_id'] =''
 
 def main():
     load_dotenv()
