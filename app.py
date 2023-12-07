@@ -7,7 +7,14 @@ import uuid
 if 'unique_id' not in st.session_state:
     st.session_state['unique_id'] =''
 
-def main():
+import pinecone      
+
+pinecone.init(      
+	api_key='3dc36ba5-79b6-4267-a754-d179fb7b8ea3',      
+	environment='gcp-starter'      
+)    
+
+index = pinecone.Index('hrcv')def main():
     load_dotenv()
 
     st.set_page_config(page_title="Resume Screening Assistance")
@@ -37,10 +44,10 @@ def main():
             embeddings=create_embeddings_load_data()
 
             #Push data to PINECONE
-            push_to_pinecone("03cea5d4-2cb8-4294-95b0-506fb2e06f71","gcp-starter","test",embeddings,final_docs_list)
+            push_to_pinecone("3dc36ba5-79b6-4267-a754-d179fb7b8ea3","gcp-starter","test",embeddings,final_docs_list)
 
             #Fecth relavant documents from PINECONE
-            relavant_docs=similar_docs(job_description,document_count,"03cea5d4-2cb8-4294-95b0-506fb2e06f71","gcp-starter","test",embeddings,st.session_state['unique_id'])
+            relavant_docs=similar_docs(job_description,document_count,"3dc36ba5-79b6-4267-a754-d179fb7b8ea3","gcp-starter","test",embeddings,st.session_state['unique_id'])
 
             #t.write(relavant_docs)
 
