@@ -3,11 +3,16 @@ from dotenv import load_dotenv
 from utils import *
 import uuid
 
-#Creating session variables
+#Creating Unique ID
 if 'unique_id' not in st.session_state:
     st.session_state['unique_id'] =''
+    with st.form("Unique ID"):
+        st.session_state = st.text_input("unique_id", value="", type="password")
+        if st.form_submit_button("Submit"):
+            st.session_state.prompt_history = []
+            st.session_state.df = None
+            st.success('Saved API key for this session.')    
 
-    
 def main():
     load_dotenv()
 
@@ -27,7 +32,7 @@ def main():
             st.write("Your unique ID")
             
             #Creating a unique ID, so that we can use to query and get only the user uploaded documents from PINECONE vector store
-            st.session_state['unique_id']=uuid.uuid4().hex
+            #st.session_state['unique_id']=uuid.uuid4().hex
             st.write(st.session_state['unique_id'])            
             
             #Create a documents list out of all the user uploaded pdf files
@@ -62,9 +67,6 @@ def main():
 
                 #Introducing Expander feature
                 with st.expander('Show me 👀'): 
-                    st.info("**Match Score** : "+str(relavant_docs[item]))
-                    #st.write("***"+relavant_docs[item].page_content)
-                    
                     #Gets the summary of the current item using 'get_summary' function that we have created which uses LLM & Langchain chain
                     summary = get_summary(relavant_docs[item])
                     st.write("**Summary** : "+summary)
