@@ -16,8 +16,6 @@ def get_pdf_text(pdf_doc):
         text += page.extract_text()
     return text
 
-
-
 # iterate over files in
 # that user uploaded PDF files, one by one
 def create_docs(user_pdf_list, unique_id):
@@ -34,6 +32,10 @@ def create_docs(user_pdf_list, unique_id):
 
     return docs
 
+def split_docs(documents, chunk_size=3000, chunk_overlap=20):
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    docs = text_splitter.split_documents(documents)
+    return docs
 
 #Create embeddings instance
 def create_embeddings_load_data():
