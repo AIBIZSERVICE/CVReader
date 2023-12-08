@@ -62,8 +62,8 @@ def main():
 
                 #Introducing Expander feature
                 with st.expander('Show me 👀'): 
-                    st.info("**Match Score** : "+str(relavant_docs[item][1]))
-                    #st.write("***"+relavant_docs[item][0].page_content)
+                    st.info("**Match Score** : "+str(relavant_docs[item]))
+                    #st.write("***"+relavant_docs[item].page_content)
                     
                     #Gets the summary of the current item using 'get_summary' function that we have created which uses LLM & Langchain chain
                     summary = get_summary(relavant_docs[item])
