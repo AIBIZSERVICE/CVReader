@@ -7,4 +7,5 @@ unstructured
 pinecone-client
 pypdf
 sentence_transformers
+faiss-cpu
 uuid
