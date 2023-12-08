@@ -63,7 +63,7 @@ def main():
                 st.subheader("👉 "+str(item+1))
 
                 #Displaying Filepath
-                st.write("**File** : "+relavant_docs[item].metadata['name'])
+                #st.write("**File** : "+relavant_docs[item].metadata['name'])
 
                 #Introducing Expander feature
                 with st.expander('Show me 👀'): 
