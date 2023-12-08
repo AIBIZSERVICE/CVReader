@@ -45,7 +45,7 @@ def main():
             push_to_store(embeddings,docs)
 
             #Fecth relavant documents from Vector Store
-            relavant_docs=similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
+            relavant_docs=get_similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
 
             st.write(relavant_docs)
 
