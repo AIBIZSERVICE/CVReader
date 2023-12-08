@@ -1,6 +1,6 @@
 import openai
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Pinecone
+from langchain.vectorstores import FAISS
 from langchain.llms import OpenAI
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.schema import Document
@@ -44,48 +44,22 @@ def create_embeddings_load_data():
     return embeddings
 
 
-#Function to push data to Vector Store - Pinecone here
-def push_to_pinecone(pinecone_apikey,pinecone_environment,pinecone_index_name,embeddings,docs):
+#Function to push data to Vector Store - FAISS here
+def push_to_store(embeddings,docs):
+    db = FAISS.from_documents(docs, embeddings)
+    print("done......upload to vector store")
 
-    pinecone.init(
-    api_key=pinecone_apikey,
-    environment=pinecone_environment
-    )
-    print("done......2")
-    Pinecone.from_documents(docs, embeddings, index_name=pinecone_index_name)
     
-
-
-#Function to pull infrmation from Vector Store - Pinecone here
-def pull_from_pinecone(pinecone_apikey,pinecone_environment,pinecone_index_name,embeddings):
-
-    pinecone.init(
-    api_key=pinecone_apikey,
-    environment=pinecone_environment
-    )
-
-    index_name = pinecone_index_name
-
-    index = Pinecone.from_existing_index(index_name, embeddings)
-    return index
-
-
-
 #Function to help us get relavant documents from vector store - based on user input
-def similar_docs(query,k,pinecone_apikey,pinecone_environment,pinecone_index_name,embeddings,unique_id):
-
-    pinecone.init(
-    api_key=pinecone_apikey,
-    environment=pinecone_environment
-    )
-
-    index_name = pinecone_index_name
-
-    index = pull_from_pinecone(pinecone_apikey,pinecone_environment,index_name,embeddings)
+def similar_docs(query,k,embeddings,unique_id):
     similar_docs = index.similarity_search_with_score(query, int(k),{"unique_id":unique_id})
     print(similar_docs)
     return similar_docs
 
+#This function will help us in fetching the top k relevent documents from our vector store - Pinecone
+def similiar_docs(query, k, embeddings, unique_id):
+    similar_docs = db.similarity_search(query, int(k),{"unique_id":unique_id})
+    return similar_docs
 
 # Helps us get the summary of a document
 def get_summary(current_doc):
