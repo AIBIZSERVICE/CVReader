@@ -53,7 +53,7 @@ def push_to_store(embeddings,docs):
 
     
 #Function to help us get relavant documents from vector store - based on user input
-def get_similar_docs(query,k,embeddings,unique_id):
+def get_similar_docs(query,k,db,embeddings,unique_id):
     similar_docs = db.similarity_search(query, int(k),{"unique_id":unique_id})
     print(similar_docs)
     return similar_docs
