@@ -25,20 +25,25 @@ def main():
     if submit:
         with st.spinner('Wait for it...'):
             st.write("Your unique ID")
+            
             #Creating a unique ID, so that we can use to query and get only the user uploaded documents from PINECONE vector store
             st.session_state['unique_id']=uuid.uuid4().hex
             st.write(st.session_state['unique_id'])            
+            
             #Create a documents list out of all the user uploaded pdf files
             final_docs_list=create_docs(pdf,st.session_state['unique_id'])
 
+            from langchain.text_splitter import RecursiveCharacterTextSplitter
+            docs = split_docs(final_docs_list)
+            
             #Displaying the count of resumes that have been uploaded
-            st.write("*Resumes uploaded* :"+str(len(final_docs_list)))
+            st.write("*Resumes uploaded* :"+str(len(docs)))
             
             #Create embeddings instance
             embeddings=create_embeddings_load_data()
 
             #Push data to Vector Store
-            push_to_store(embeddings,final_docs_list)
+            push_to_store(embeddings,docs)
 
             #Fecth relavant documents from Vector Store
             relavant_docs=similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
