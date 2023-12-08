@@ -42,10 +42,10 @@ def main():
             embeddings=create_embeddings_load_data()
 
             #Push data to Vector Store
-            push_to_store(embeddings,docs)
+            db=push_to_store(embeddings,docs)
 
             #Fecth relavant documents from Vector Store
-            relavant_docs=get_similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
+            relavant_docs=get_similar_docs(job_description,document_count,db, embeddings,st.session_state['unique_id'])
 
             st.write(relavant_docs)
 
