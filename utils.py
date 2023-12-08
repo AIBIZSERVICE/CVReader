@@ -47,6 +47,7 @@ def create_embeddings_load_data():
 def push_to_store(embeddings,docs):
     db = FAISS.from_documents(docs, embeddings)
     print("done......upload to vector store")
+    return db
 
     
 #Function to help us get relavant documents from vector store - based on user input
@@ -55,10 +56,6 @@ def similar_docs(query,k,embeddings,unique_id):
     print(similar_docs)
     return similar_docs
 
-#This function will help us in fetching the top k relevent documents from our vector store - Pinecone
-def similiar_docs(query, k, embeddings, unique_id):
-    similar_docs = db.similarity_search(query, int(k),{"unique_id":unique_id})
-    return similar_docs
 
 # Helps us get the summary of a document
 def get_summary(current_doc):
