@@ -38,7 +38,7 @@ def main():
             embeddings=create_embeddings_load_data()
 
             #Push data to Vector Store
-            push_to_pinecone(embeddings,final_docs_list)
+            push_to_store(embeddings,final_docs_list)
 
             #Fecth relavant documents from Vector Store
             relavant_docs=similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
