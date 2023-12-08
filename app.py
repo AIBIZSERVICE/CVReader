@@ -58,7 +58,7 @@ def main():
                 st.subheader("👉 "+str(item+1))
 
                 #Displaying Filepath
-                st.write("**File** : "+relavant_docs[item][0].metadata['name'])
+                st.write("**File** : "+relavant_docs[item].metadata['name'])
 
                 #Introducing Expander feature
                 with st.expander('Show me 👀'): 
@@ -66,7 +66,7 @@ def main():
                     #st.write("***"+relavant_docs[item][0].page_content)
                     
                     #Gets the summary of the current item using 'get_summary' function that we have created which uses LLM & Langchain chain
-                    summary = get_summary(relavant_docs[item][0])
+                    summary = get_summary(relavant_docs[item])
                     st.write("**Summary** : "+summary)
 
         st.success("Hope I was able to save your time❤️")
