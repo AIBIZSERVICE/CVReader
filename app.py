@@ -7,9 +7,7 @@ import uuid
 if 'unique_id' not in st.session_state:
     st.session_state['unique_id'] =''
 
-import pinecone      
-
-
+    
 def main():
     load_dotenv()
 
@@ -39,11 +37,11 @@ def main():
             #Create embeddings instance
             embeddings=create_embeddings_load_data()
 
-            #Push data to PINECONE
-            push_to_pinecone('03cea5d4-2cb8-4294-95b0-506fb2e06f71','gcp-starter','hrcv',embeddings,final_docs_list)
+            #Push data to Vector Store
+            push_to_pinecone(embeddings,final_docs_list)
 
-            #Fecth relavant documents from PINECONE
-            relavant_docs=similar_docs(job_description,document_count,'03cea5d4-2cb8-4294-95b0-506fb2e06f71','gcp-starter','hrcv',embeddings,st.session_state['unique_id'])
+            #Fecth relavant documents from Vector Store
+            relavant_docs=similar_docs(job_description,document_count,embeddings,st.session_state['unique_id'])
 
             st.write(relavant_docs)
 
