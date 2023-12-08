@@ -33,7 +33,6 @@ def main():
             #Create a documents list out of all the user uploaded pdf files
             final_docs_list=create_docs(pdf,st.session_state['unique_id'])
 
-            from langchain.text_splitter import RecursiveCharacterTextSplitter
             docs = split_docs(final_docs_list)
             
             #Displaying the count of resumes that have been uploaded
