@@ -53,7 +53,7 @@ def main():
             #Fecth relavant documents from Vector Store
             relavant_docs=get_similar_docs(job_description,document_count,db, embeddings,st.session_state['unique_id'])
 
-            st.write(relavant_docs)
+            #st.write(relavant_docs)
 
             #Introducing a line separator
             st.write(":heavy_minus_sign:" * 30)
@@ -64,7 +64,7 @@ def main():
                 st.subheader("👉 "+str(item+1))
 
                 #Displaying Filepath
-                #st.write("**File** : "+relavant_docs[item].metadata['name'])
+                st.write("**File** : "+relavant_docs[item].metadata['name'])
 
                 #Introducing Expander feature
                 with st.expander('Show me 👀'): 
