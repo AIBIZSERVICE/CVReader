@@ -6,20 +6,21 @@ import uuid
 #Creating Unique ID
 if 'unique_id' not in st.session_state:
     st.session_state['unique_id'] =''
+    
+
+def main():
+    load_dotenv()
+    st.set_page_config(page_title="Resume Screening Assistance")
+    st.title("HR - Resume Screening Assistance...💁 ")
+    st.subheader("I can help you in resume screening process")
+    
     with st.form("Unique ID"):
         st.session_state = st.text_input("unique_id", value="", type="password")
         if st.form_submit_button("Submit"):
             st.session_state.prompt_history = []
             st.session_state.df = None
-            st.success('Saved API key for this session.')    
-
-def main():
-    load_dotenv()
-
-    st.set_page_config(page_title="Resume Screening Assistance")
-    st.title("HR - Resume Screening Assistance...💁 ")
-    st.subheader("I can help you in resume screening process")
-
+            st.success('Saved ID for this session.')    
+    
     job_description = st.text_area("Please paste the 'JOB DESCRIPTION' here...",key="1")
     document_count = st.text_input("No.of 'RESUMES' to return",key="2")
     # Upload the Resumes (pdf files)
