@@ -15,7 +15,7 @@ def main():
     st.subheader("I can help you in resume screening process")
     
     with st.form("Unique ID"):
-        st.session_state = st.text_input("unique_id", value="", type="password")
+        st.session_state['unique_id']= st.text_input("unique_id", value="", type="password")
         if st.form_submit_button("Submit"):
             st.session_state.prompt_history = []
             st.session_state.df = None
